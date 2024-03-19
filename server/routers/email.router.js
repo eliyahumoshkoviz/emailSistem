@@ -1,7 +1,9 @@
 const express = require("express"),
   router = express.Router();
 
-router.post("/", async (req, res) => {});
+router.post("/", async (req, res) => {
+  // const = {}
+});
 router.post("/draft", async (req, res) => {});
 
 router.get("/", async (req, res) => {});
