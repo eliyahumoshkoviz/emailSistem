@@ -35,4 +35,4 @@ const emailSchema = new mongoose.Schema({
 //Make schema 
 const emailModel = mongoose.model("email", emailSchema);
 
-module.exports = { emailModel };
+module.exports =  emailModel ;

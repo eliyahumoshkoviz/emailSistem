@@ -6,7 +6,7 @@ require('dotenv').config();
 app.use(require('cors')());
 app.use(express.json());
 
-require('./DB/db').connect();
+require('./DL/db').connect();
 
 app.use('/user', require('./routers/user.router'))
 app.use('/email', require('./routers/email.router'))

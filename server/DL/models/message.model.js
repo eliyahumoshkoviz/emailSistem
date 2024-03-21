@@ -6,10 +6,10 @@ const mongoose = require("mongoose");
 
 //Creating legitimacy for the schema
 const messageSchema = new mongoose.Schema({
-    to: {
+    to: [{
         type: String,
         require: true
-    },
+    }],
 
     from: {
         type: String,
@@ -29,4 +29,4 @@ const messageSchema = new mongoose.Schema({
 //Make schema 
 const messageModel = mongoose.model("message", messageSchema);
 
-module.exports = { messageModel };
+module.exports =  messageModel ;
