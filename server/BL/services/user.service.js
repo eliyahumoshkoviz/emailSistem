@@ -1,23 +1,16 @@
-const { read, create, readOne, update,del } = require("../../DL/controllers/user.conntroller");
+const {
+  create,
+  read,
+  readOne,
+  update,
+  del,
+} = require("../../../server/DL/controllers/user.conntroller");
 
-async function createUser(data) {
-  return await create(data);
-}
-const getAll = async (filter) => {
-  return await read(filter);
+const getEmailsUser = async (id, field) => {
+  return await readOne({ _id: id}, field && { [field]: 1 }, {
+    path: "emails.email",
+    populate: { path: "msg", options: { sort: { _id: -1 }, limit: 1 } },
+  });
 };
 
-const getOne = async (filter) => {
-  return await readOne(filter);
-};
-
-const updateFilde = async (filter, data) => {
-  return await update(filter, data);
-};
-const delUser = async (id) => {
-  return await del(id);
-};
-
-
-
-module.exports = { getAll, createUser,getOne, updateFilde,delUser };
+module.exports = { getEmailsUser };

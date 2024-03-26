@@ -5,11 +5,11 @@ async function create(data) {
     return await messageModel.create(data)
 }
 async function read(filter) {
-    return await messageModel.find({ ...filter, isActive: true })
-}
+    return await messageModel.find(filter);
+};
 async function readOne(filter) {
-    return await messageModel.findOne({ ...filter, isActive: true })
-}
+    return await messageModel.findOne(filter);
+};
 async function update(id, data) {
     // return await messageModel.findOneAndUpdate({_id:id}, data,{new : true})
     return await messageModel.findByIdAndUpdate(id, data, { new: true })

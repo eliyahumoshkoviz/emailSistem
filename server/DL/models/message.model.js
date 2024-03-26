@@ -21,8 +21,8 @@ const messageSchema = new mongoose.Schema({
         default: Date.now
     },
     
-    content:String,
-    subject:String
+    subject:String,
+    content:String
 
 });
 
