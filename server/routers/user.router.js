@@ -6,7 +6,7 @@ const express = require("express"),
 router.post("/", async (req, res) => {});
 
 router.get("/inbox", async (req, res) => {
-  const result = await getEmailsUser(req.headers.user._id,"", "emails");
+  const result = await getEmailsUser(req.headers.user._id, "emails");
   res.send(result);
 });
 

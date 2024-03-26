@@ -10,11 +10,13 @@ async function read(filter) {
     .find({ ...filter, isActive: true })
     .populate("emails.email");
 }
-async function readOne(filter, projection, populate="emails.email") {
+async function readOne(filter, projection, populate={ path: "emails.email", populate: { path: "msg"}}) {
   return await userModle
     .findOne({ ...filter, isActive: true }, projection)
     .populate(populate);
 }
+
+
 async function update(id, data) {
   // כמו findOne מחזיר את האוביקט ולא רק כמה הוגדר
   //   return await userModle.findOneAndUpdate({ _id: id }, data, { new: true });
