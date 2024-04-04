@@ -1,10 +1,5 @@
 const mongoose = require("mongoose");
 
-//This code defines the form of the collection
-//in the database and actually creates it
-//call this code from another file to create the schma
-
-//Creating legitimacy for the schema
 const userSchema = new mongoose.Schema({
   email: {
     type: String,
@@ -24,20 +19,22 @@ const userSchema = new mongoose.Schema({
 
   avartar: String,
 
-  emails: [
+  chats: [
     {
-      email: {
+      
+      chat: {
         type: mongoose.Schema.ObjectId,
-        ref: "email",
+        ref: "chat",
       },
-      isRead: {
-        type: Boolean,
-        default: false,
-    },
+
       isSent: Boolean,
       isRecieved: Boolean,
       isFavorite: Boolean,
       isDeleted: Boolean,
+      isDraft: Boolean,
+      isRead: { type: Boolean, default: false },
+      labels: [String]
+
     },
   ],
 
@@ -53,6 +50,7 @@ const userSchema = new mongoose.Schema({
 });
 
 //Make schema
-const userModel = mongoose.model("user", userSchema);
+const userModel =  mongoose.model("user", userSchema);
 
 module.exports = userModel;
+

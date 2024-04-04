@@ -1,13 +1,16 @@
-const { create, read, readOne, update } = require("../../../server/DL/controllers/email.controller");
+const { create, read, readOne, update } = require("../../../server/DL/controllers/chat.controller");
 
 async function createEmail(data) {
     let res = await create(data)
     console.log("new Email created:", res);
+    return res;
 }
 
 async function readEmail(filter) {
     let res = await read(filter)
     console.log("recieve messages: ", res);
+    return res;
+
 }
 
 async function readFirst(filter) {

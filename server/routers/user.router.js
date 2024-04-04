@@ -6,16 +6,12 @@ const express = require("express"),
 router.post("/", async (req, res) => {});
 
 router.get("/inbox", async (req, res) => {
-  const result = await getEmailsUser(req.headers.user._id, "emails");
+  const result = await getEmailsUser(req.headers.user._id, "emails","isRecieved");
   res.send(result);
 });
 
 router.get("/sent", async (req, res) => {
-  const result = await getEmailsUser(
-    req.headers.user._id,
-    { emails: { $elemMatch: { email: { _id: "65fc1fd487ef1fde13aaa0d7" } } } },
-    "emails"
-  );
+  const result = await getEmailsUser(req.headers.user._id, "emails","isSent");
   res.send(result);
 });
 
