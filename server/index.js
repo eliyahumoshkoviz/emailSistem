@@ -10,6 +10,6 @@ app.use(express.json());
 require('./DL/db').connect();
 
 app.use('/user',auth, require('./routers/user.router'))
-app.use('/email', require('./routers/email.router'))
+app.use('/chat', require('./routers/chat.router'))
 
 app.listen(5050,()=>console.log("*** Server is running ***"))

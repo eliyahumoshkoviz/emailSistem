@@ -6,11 +6,19 @@ const {
   del,
 } = require("../../../server/DL/controllers/user.conntroller");
 
-const getEmailsUser = async (id, field, sort) => {
-  const populate = { path: "chats.chat", populate: { path: "msg", options: { sort: { _id: -1 }, limit: 1 } } }
-  const { emails } = await readOne({ _id: id }, field && { [field]: 1 }, populate);
-  return emails.filter(emailObj => emailObj[sort] === true);
+
+const getChatsUser = async (id, field = "", sort = "", populate = {}, getLastMsg = true) => {
+  const query = await readOne({ _id: id }, field, populate);
+  sort && (query.chats = query.chats?.filter(obj => obj[sort] === sort === "notRead" ? false : true));
+  getLastMsg && populate.chats && (query.chats = query.chats?.map(obj => ({
+    ...obj,
+    chat: {
+      ...obj.chat,
+      msg: [obj.chat.msg[obj.chat.msg.length - 1]]
+    }
+  })))
+  return query;
 };
 
 
-module.exports = { getEmailsUser };
+module.exports = { getChatsUser };

@@ -1,5 +1,6 @@
 const userController = require('./controllers/user.conntroller')
 const chatController = require('./controllers/chat.controller')
+const userService = require('../BL/services/user.service')
 
 const userModel = require('./models/user.model')
 
@@ -11,15 +12,17 @@ const chatModel = require('./models/chat.model')
 module.exports = go = async (read) => {
     require('dotenv').config()
     require('./db').connect()
-       let getAll = await userController.readOne( {_id:"660eb731a00e9a204f21473f"},"chats"
+       let getAll = await userService.getChatsUser(
+         {_id:"660eb9305a71d002d89eb44f"},"","isFavorite"
        ,
-        populate={
-            chats:true,
-            getLestMsg:true,
-            users:true,
-       }
-       )
-      console.log(getAll.chats[0].chat)
+       populate={
+           chats:true,
+           users:false,
+        },
+        
+        )
+    //   console.log(getAll.chats[0].chat)
+      console.log(getAll)
 
     const x = {
 

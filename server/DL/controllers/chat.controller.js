@@ -24,8 +24,8 @@ async function update(id, data) {
     return await chatModel.findByIdAndUpdate({ _id: id }, data, { new: true })
 }
 
-async function del(id) {
-    return await chatModel.deleteOne({ _id: id });
-}
+// async function del(id) {
+//     return await chatModel.deleteOne({ _id: id });
+// }
 
-module.exports = { create, read, readOne, update, del }
+module.exports = { create, read, readOne, update }
