@@ -16,7 +16,7 @@ async function create(data) {
 async function readOne(filter, projection, populate = {}) {
   let query = await userModel.findOne(filter, projection && { [projection]: 1 });
   if (populate && populate.chats && query) await query.populate("chats.chat");
-  if (populate && populate.users && query) await query?.populate({ path: 'chats.chat.to', select: 'fullName' });
+  if (populate && populate.users && query) await query?.populate('chats.chat.to');
   return query.toObject();
 }
 

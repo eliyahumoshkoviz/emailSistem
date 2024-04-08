@@ -6,13 +6,7 @@ const { auth } = require('../middlewares/auth')
 router.post("/", auth, async (req, res) => {
   const { subject, content, to, user } = req.body;
   try {
-    res.send({
-      _id: "fghjk5678",
-      subject,
-      content,
-      to,
-      from: user.email
-    })
+    res.send({_id: "fghjk5678", subject, content, to, from: user.email})
 
   } catch (err) {
     res.status(400).send(arr.msg || arr.message || "wrong")
@@ -20,8 +14,8 @@ router.post("/", auth, async (req, res) => {
 });
 router.post("/draft", async (req, res) => { });
 
-router.get("/", async (req, res) => { 
-  
+router.get("/", async (req, res) => {
+
 });
 router.get("/:emailId", async (req, res) => { });
 router.get("/favorites", async (req, res) => { });

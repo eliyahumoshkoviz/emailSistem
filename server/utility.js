@@ -7,7 +7,7 @@ module.exports = {
         deleted: "isDeleted",
         draft: "isDraft",
         read: "isRead",
-        notRead: "isRead",
+        notRead: "notRead",
     },
 
    
