@@ -11,20 +11,20 @@ const chatModel = require('./models/chat.model')
 module.exports =  go = async (read)=> {
     require('dotenv').config()
     require('./db').connect()
-    const x ={
+    // const x ={
 
-        subject: "Report Request",
-        to: [{_id:"660eb731a00e9a204f21473d"}],
-        msg: [{
-            from: {_id:"660eb731a00e9a204f21473d"},
-            date: "2024-03-20T09:30:00.000Z",
-            content: "Could you please send me the report?",
-        }],
+    //     subject: "Report Request",
+    //     to: [{_id:"660eb731a00e9a204f21473d"}],
+    //     msg: [{
+    //         from: {_id:"660eb731a00e9a204f21473d"},
+    //         date: "2024-03-20T09:30:00.000Z",
+    //         content: "Could you please send me the report?",
+    //     }],
 
 
-    }
+    // }
 
-    let u = await chatController.create( x)
+    let u = await chatController.readOne({_id: '660eb731a00e9a204f214743'})
       console.log(u)
     // await userModel.collection.drop()
     // await chatModel.collection.drop()
