@@ -1,34 +1,62 @@
 const userController = require('./controllers/user.conntroller')
 const chatController = require('./controllers/chat.controller')
+const userService = require('../BL/services/user.service')
 
-const userModel =  require('./models/user.model')
+const userModel = require('./models/user.model')
 
 const chatModel = require('./models/chat.model')
 
 
 
 
-module.exports =  go = async (read)=> {
+module.exports = go = async (read) => {
     require('dotenv').config()
     require('./db').connect()
-    // const x ={
+       let getAll = await userService.getChatsUser(
+         {_id:"660eb9305a71d002d89eb44f"},"","isFavorite"
+       ,
+       populate={
+           chats:true,
+           users:false,
+        },
+        
+        )
+    //   console.log(getAll.chats[0].chat)
+      console.log(getAll)
 
-    //     subject: "Report Request",
-    //     to: [{_id:"660eb731a00e9a204f21473d"}],
-    //     msg: [{
-    //         from: {_id:"660eb731a00e9a204f21473d"},
-    //         date: "2024-03-20T09:30:00.000Z",
-    //         content: "Could you please send me the report?",
-    //     }],
+    const x = {
+
+        subject: "Report Request",
+        to: [{ _id: "660eb731a00e9a204f21473d" }],
+        msg: [{
+            from: { _id: "660eb731a00e9a204f21473d" },
+            date: "2024-03-20T09:30:00.000Z",
+            content: "Could you please send me the report?",
+        }],
+
+    }
+
+    // let addNew = await chatController.create( x)
+    //   console.log(addNew)
+
+    // let getAll = await chatController.read( {_id:"660eb731a00e9a204f214743"})
+    //   console.log(getAll)
+    // let gatOne = await chatController.readOne( {_id:'66123bd4a15e0ec1eb0f78d5'})
+    //   console.log(gatOne)
+
+    // let updateOne = await chatController.update('66123bd4a15e0ec1eb0f78d5', {subject: 'Report'})
+    // updateOne.msg[0].content="test save";
+    // updateOne.save();
+    //  let gatOne = await chatController.readOne( {_id:'66123bd4a15e0ec1eb0f78d5'})
+    //   console.log(gatOne)
+    //   let delOne = await chatController.del('66123bd4a15e0ec1eb0f78d5')
+    //   console.log(delOne)
 
 
-    // }
-
-    let u = await chatController.readOne({_id: '660eb731a00e9a204f214743'})
-      console.log(u)
+    // console.log(updateOne)
     // await userModel.collection.drop()
     // await chatModel.collection.drop()
-  
+
 
     // console.log("###########  START  #########");
 
@@ -67,7 +95,7 @@ module.exports =  go = async (read)=> {
     //         from: ru2._id,
     //         date: "2024-03-21T10:00:00.000Z",
     //         content: "Greeting and you??",
-            
+
     //     }, {
     //         from: ru1._id,
     //         date: "2024-03-21T10:08:00.000Z",
@@ -91,7 +119,7 @@ module.exports =  go = async (read)=> {
     //         date: "2024-03-20T10:45:00.000Z",
     //         content: "whyyyyy?!?!",
     //     }, {
-            
+
     //         from: ru3._id,
     //         date: "2024-03-20T10:57:00.000Z",
     //         content: "why whyyyyyyy?!?!",
@@ -108,7 +136,7 @@ module.exports =  go = async (read)=> {
     //     let ee = await chatController.create(e)
     //     chatDB.push(ee)
     // }
- 
+
 
     // ru1.chats.push({
     //     chat: chatDB[0]._id,

@@ -20,7 +20,9 @@ router.post("/", auth, async (req, res) => {
 });
 router.post("/draft", async (req, res) => { });
 
-router.get("/", async (req, res) => { });
+router.get("/", async (req, res) => { 
+  
+});
 router.get("/:emailId", async (req, res) => { });
 router.get("/favorites", async (req, res) => { });
 router.get("/draft", async (req, res) => { });
