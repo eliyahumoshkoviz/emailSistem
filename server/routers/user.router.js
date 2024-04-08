@@ -15,7 +15,7 @@ const getChatsUserByFlag = async (flag) => {
   const isValidOption = regex.test(flag);
 
   try {
-    return result = await getChatsUser({ _id: "660eb9305a71d002d89eb44f" }, "", Flags[flag],
+    return result = await getChatsUser( "6612dfae354a5e11d696b00c" , "", Flags[flag],
       populate = {
         chats: true,
         users: false,

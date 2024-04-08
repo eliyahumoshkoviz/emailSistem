@@ -7,17 +7,18 @@ async function create(data) {
 }
 
 
-async function read(filter) {
-    return await chatModel.find(filter)
-        .populate({ path: 'to', select: 'fullName' })
-        .populate('msg.from')
-}
+async function read(filter, projection, toPopulate = 'to', fromPopulate = 'msg.from') {
+    return await chatModel.find(filter, projection && { [projection]: 1 })
+        .populate(toPopulate)
+        .populate(fromPopulate);
+};
 
-async function readOne(filter) {
-    return await chatModel.findOne(filter)
-        .populate({ path: 'to', select: 'fullName' })
-        .populate('msg.from');
-}
+async function readOne(filter, projection, toPopulate = 'to', fromPopulate = 'msg.from') {
+    return await chatModel.findOne(filter, projection && { [projection]: 1 })
+        .populate(toPopulate)
+        .populate(fromPopulate);
+};
+
 
 
 async function update(id, data) {

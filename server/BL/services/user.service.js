@@ -8,17 +8,22 @@ const {
 
 
 const getChatsUser = async (id, field = "", sort = "", populate = {}, getLastMsg = true) => {
+
   const query = await readOne({ _id: id }, field, populate);
   sort && (query.chats = query.chats?.filter(obj => obj[sort] === sort === "notRead" ? false : true));
-  getLastMsg && populate.chats && (query.chats = query.chats?.map(obj => ({
-    ...obj,
+  
+  getLastMsg && populate.chats && query && (query.chats = query.chats?.map(obj => ({
     chat: {
       ...obj.chat,
-      msg: [obj.chat.msg[obj.chat.msg.length - 1]]
+      msg: [obj.chat.msg[obj.chat.msg.length - 1]],
+      newField: 'newValue' 
     }
   })))
+  console.log(query.chats[0].chat)
   return query;
 };
+
+
 
 
 module.exports = { getChatsUser };
