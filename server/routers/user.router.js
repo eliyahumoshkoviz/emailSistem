@@ -1,23 +1,23 @@
 const { getChatsUser } = require("../BL/services/user.service");
 const { flagIsExist } = require('../middlewares/checkParams');
 const { Flags } = require('../utility')
-const { auth } = require('../middlewares/auth');
-const { populate } = require("../DL/models/user.model");
-
 
 const express = require("express"),
   router = express.Router();
 
 
-router.get("/:flag", auth, flagIsExist, async (req, res) => {
+router.get("/:flag", flagIsExist, async (req, res) => {
   const { _id } = req.headers.user;
+  
+  const populate = {
+    chats: true,
+    users: false
+  }
+
   try {
-    const populate = {
-      chats: true,
-      users: false
-    }
     const result = await getChatsUser(_id, "", Flags[req.params.flag], populate);
     res.send(result);
+
   } catch (err) {
     res.status(err?.code ?? 400).send(err.message);
     console.error(err.message)
