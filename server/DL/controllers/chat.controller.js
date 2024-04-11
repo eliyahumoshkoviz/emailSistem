@@ -7,14 +7,14 @@ async function create(data) {
 }
 
 
-async function read(filter, projection, toPopulate = 'to', fromPopulate = 'msg.from') {
-    return await chatModel.find(filter, projection && { [projection]: 1 })
+async function read(filter, select = '', toPopulate = 'to', fromPopulate = 'msg.from') {
+    return await chatModel.find(filter, select)
         .populate(toPopulate)
         .populate(fromPopulate);
 };
 
-async function readOne(filter, projection, toPopulate = 'to', fromPopulate = 'msg.from') {
-    return await chatModel.findOne(filter, projection && { [projection]: 1 })
+async function readOne(filter, select = '', toPopulate = 'to', fromPopulate = 'msg.from') {
+    return await chatModel.findOne(filter, select)
         .populate(toPopulate)
         .populate(fromPopulate);
 };
