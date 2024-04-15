@@ -1,5 +1,5 @@
 const chatModel = require('../models/chat.model')
-require('../models/chat.model')
+require('../models/user.model')
 
 // CRUD
 async function create(data) {
@@ -13,11 +13,18 @@ async function read(filter, select = '', toPopulate = 'to', fromPopulate = 'msg.
         .populate(fromPopulate);
 };
 
-async function readOne(filter, select = '', toPopulate = 'to', fromPopulate = 'msg.from') {
-    return await chatModel.findOne(filter, select)
-        .populate(toPopulate)
-        .populate(fromPopulate);
-};
+
+async function readOne(filter, select ='', populate = {}) {
+    let query = await chatModel.findOne(filter, select);
+    if (populate && populate.toPopulate && query) await query.populate("to");
+    if (populate && populate.fromPopulate && query) {
+        await query.populate({
+            path: 'msg.from',
+            select: '_id fullName avatar'
+        });
+    }
+    return query;
+  }
 
 
 

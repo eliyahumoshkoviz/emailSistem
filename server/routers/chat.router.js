@@ -1,26 +1,38 @@
 const express = require("express"),
   router = express.Router();
+const { getChat } = require("../BL/services/chat.service");
+
 
 const { auth } = require('../middlewares/auth')
 
 router.post("/", auth, async (req, res) => {
   const { subject, content, to, user } = req.body;
   try {
-    res.send({_id: "fghjk5678", subject, content, to, from: user.email})
+    res.send({ _id: "fghjk5678", subject, content, to, from: user.email })
 
   } catch (err) {
     res.status(400).send(arr.msg || arr.message || "wrong")
   }
 });
-router.post("/draft", async (req, res) => { });
 
-router.get("/", async (req, res) => {
 
+router.get("/:chatId", async (req, res) => {
+
+  const populate = {
+    toPopulate: false,
+    fromPopulate: true
+  }
+
+  try {
+    const result = await getChat(req.params.chatId, "", populate);
+    res.send(result);
+
+  } catch (err) {
+    res.status(err?.code ?? 400).send(err.message);
+    console.error(err.message)
+  }
 });
-router.get("/:emailId", async (req, res) => { });
-router.get("/favorites", async (req, res) => { });
-router.get("/draft", async (req, res) => { });
-router.get("/deleted", async (req, res) => { });
+
 
 //updata status
 router.put("/:emailId", async (req, res) => { })
